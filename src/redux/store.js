@@ -7,7 +7,10 @@ import rootReducer from './rootReducer';
 
 const initialState = {};
 
-const middlewares = [loggerMiddleware, thunkMiddleware]
+const middlewares = [thunkMiddleware]
+if(process.env.NODE_ENV === 'development') {
+  middlewares.push(loggerMiddleware);
+}
 const middlewareEnhancer = applyMiddleware(...middlewares);
 
 const enhancers = [middlewareEnhancer]
